@@ -1,24 +1,26 @@
+
+
 /* the stle for the wrapper element */
-.game{
+.quizy-memorygame{
   position:relative;
   width:100%;
 }
 
 /* styles of the card to show */
-.game.mgcard-show{
+.quizy-memorygame .mgcard-show{
   width:200px;
   height:200px;
-  background:url('Images/mg-mcard.png');
+  background:url('img/mg-mcard.png');
     clear: both;
 }
 
-.game .quizy-mg-item{
+.quizy-memorygame .quizy-mg-item{
   position:absolute;
   cursor:pointer;
   text-align:center;
 }
 
-.game.quizy-mg-item .quizy-mg-item-bottom, .game .quizy-mg-item .quizy-mg-item-top{
+.quizy-memorygame .quizy-mg-item .quizy-mg-item-bottom, .quizy-memorygame .quizy-mg-item .quizy-mg-item-top{
   position:absolute;
   top:0;
   left:0;
@@ -26,8 +28,7 @@
 }
 
 .quizy-mg-item .quizy-mg-item-top{
- 
-  background:url('Images/card.jpg');
+  background:url('img/quizy-mg-item-top.png');
 }
 
 /* styles for the popup notifications */
@@ -43,12 +44,11 @@
 }
 
 .quizy-mg-notification-fly-neg{
-  background:url('Images/notmatched.jpg');
+  background:url('img/quizy-mg-notif-neg.png');
 }
 
 .quizy-mg-notification-fly-pos{
-  background:url('Images/matched.jpg');
-
+  background:url('img/quizy-mg-notif-pos.png');
 }
 
 /* styles for the game summary */
@@ -81,13 +81,13 @@
 #quizy-game-summary #gs-column2{
   font-size:12px;
   padding-top: 65px;
-  background:url('Images/mg-timeicon.png') no-repeat 70% 25%;
+  background:url('img/mg-timeicon.png') no-repeat 70% 25%;
 }
 
 #quizy-game-summary #gs-column3{
   font-size:12px;
   padding-top: 65px;
-  background:url('Images/mg-clickicon.png') no-repeat 70% 25%;
+  background:url('img/mg-clickicon.png') no-repeat 70% 25%;
 }
 
 

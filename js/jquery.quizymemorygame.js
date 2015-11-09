@@ -1,3 +1,14 @@
+// ***
+//  Memory game plugin for jQuery
+//  Author: Yane Frenski
+//  https://github.com/frenski/quizy-memorygame
+//
+//  (c) 2012-2013 http://yane.fr/
+//  MIT licensed
+// ***
+
+
+// IE hack for indexOf
 if(!Array.indexOf){
   Array.prototype.indexOf = function(obj){
    for(var i=0; i<this.length; i++){
@@ -12,15 +23,17 @@ if(!Array.indexOf){
 
 (function($) {
   
-  var initData = ''; 
+  var initData = ''; // Later enable to change this on the fly
   var initOpts = {}
   
   var methods = {
     
       init : function(options) {
         
-        // variables declaration
-    
+        // VARIABLES **************************************************************
+        // ************************************************************************
+        
+        // Keeps the record of the initial items and options
         initData = $(this).html();
         initOpts = options;
 
@@ -30,13 +43,13 @@ if(!Array.indexOf){
         // keeps the number of cards
         var itemsNum = $(this).children('ul').children('li').length;
 
-        // we keep here the selected correct items 
+        // we keep here the selected correct items (after we have a match)
         var correctItems = new Array();
 
         // keeps the matching ids = which elements match
         var matches = new Array();
 
-        // keep the inner html of the elements
+        // keep the inner html of the elements(to hide them from web inspector, etc)
         var inHtml = new Array();
 
         // a selector class for the cards
@@ -52,14 +65,14 @@ if(!Array.indexOf){
         // keeps the number of clicks in general
         var numTotalClicks = 0;
 
-        // keep the number of matches and the number of seconds for the summary
+        // keep the numer of matches and the number of seconds for the summary
         var numMatches = 0;
         var numSeconds = 0;
 
         // a timer variable
         var gameTimer;
 
-        // variables from the plugin parameters
+        // variables from the plugin parameters (defined and described at the end)
         var delayShow = opts.openDelay;
         var w = opts.itemWidth;
         var h = opts.itemHeight;
@@ -67,8 +80,8 @@ if(!Array.indexOf){
         var rowNum = Math.ceil(itemsNum/opts.colCount);
         var random = opts.randomised;
         
-     //Functions..
-        
+        // FUNCTIONS **************************************************************
+        // ************************************************************************
 
         // A function to handle the element click
         var handleClick = function(){
@@ -389,8 +402,52 @@ if(!Array.indexOf){
         $.error( 'Method ' +  optionsMethods + ' does not exist on jQuery.tooltip' );
     }
     
-  }  
-  $.fn.quizyMemoryGame.defaults = {itemWidth: 156, itemHeight: 156, itemsMargin:10, colCount:5, animType:'scroll', animSpeed:250, openDelay:2500, flipAnim:'rl', resultIcons:true, gameSummary:true, randomised:true, textSummaryTitle:'YOUR GAME SUMMARY', replayButton:true, replayButtonText:'PLAY AGAIN', closeButtonText:'EXIT GAME', textSummaryClicks:'clicks', textSummaryTime:'seconds', onFinishCall:''}
+  }
+  
+  /**** plugin parameters *****************************************************
+  *****************************************************************************
+  
+    * itemWidth:         The width of the card in pixels.
+    * itemHeight:        The width of the card in pixels.
+                         Don't forget to change the style of the element in
+                         the CSS if you change one of this two paremeters
+    * itemsMargin:       The right and bottom margin of the element defining
+                         the margin between the cards.
+    * colCount:          In how many columns the plugin should arrange the cards
+    * animType:          The type of animation used when a card is clicked. 
+                         Can be 'flip', 'fade' and 'scroll'.
+    * flipAnim:          The direction of the flip animation, if chosen in the
+                         previous property.Possible values: 'tb', 'bt', 'lr', 'rl'
+    * animSpeed:         How fast the card turning animation should be (in ms)
+    * openDelay:         For how long the card should stay turned (in ms)
+    * resultIcons:       After turning each to pairs the plugin shows an icon
+                         if it was correct or not. Can be true or false
+    * gameSummary:       At the end of the game the plugin shows a short game
+                         summary - how many clicks the user has done and how 
+                         much time it took to complete the game. 
+                         Can be true or false
+    * textSummaryTitle:  The title of the summary text at the end of the game
+    * textSummaryClicks: The same as the previous but used for the text 
+                         indicating the clicks done.
+    * textSummaryTime:   The same as the previous but used for the text 
+                         indicating the time to complete.
+    * replayButton:      At the end of the game the at the bottom of the summary
+                         popup a replay button can be shown
+                         Can be true or false
+    * replayButtonText:  The text to appear on the replay button
+    * closeButtonText:   The text to appear on the close button
+    * onFinishCall:      The call back function
+                         It sends two arguments: clicks and time.
+                         
+    ***** METHODS ************************************************************
+    
+    * init:             initializes the plug
+    * destroy:          destroys the plug
+    * reset:            resets the game
+                         
+  ****************************************************************************/
+  
+  $.fn.quizyMemoryGame.defaults = {itemWidth: 156, itemHeight: 156, itemsMargin:10, colCount:5, animType:'scroll', animSpeed:250, openDelay:2500, flipAnim:'rl', resultIcons:true, gameSummary:true, randomised:true, textSummaryTitle:'Your game summary', replayButton:true, replayButtonText:'Replay', closeButtonText:'Close', textSummaryClicks:'clicks', textSummaryTime:'seconds', onFinishCall:''}
   
   
 })(jQuery);
